@@ -34,18 +34,22 @@ void loop() {
   Serial.println("cm");             // Print 'distance' units in serial monitor
 
   if ( distance > 1 ) {             // If anyting is in range . . .
-    digitalWrite(PUMP, HIGH);       // turn the pump on
-  } else {                          // Else . . .
-    delay(50);                      // wait 50ms
-    distance = sonar.ping_cm();     // then check the 'distance' variable again
-    if ( distance == 0 ) {          // if nothing is in range . . .
-      delay(1000);                  // wait 1 second
-      distance = sonar.ping();      // then check the 'distance' variable again
-      if ( distance == 0 ) {        // if nothing is in range . . .
-        delay(1000);                // wait 1 second
-        distance = sonar.ping();    // then check the 'distance' variable again
-        if ( distance == 0 ) {      // finally, if nothing is in range . . .
-          digitalWrite(PUMP, LOW);  // turn the pump off
+    delay(50);
+    distance = sonar.ping_cm();
+    if ( distance > 1) {
+      digitalWrite(PUMP, HIGH);       // turn the pump on
+    } else {                          // Else . . .
+      delay(50);                      // wait 50ms
+      distance = sonar.ping_cm();     // then check the 'distance' variable again
+      if ( distance == 0 ) {          // if nothing is in range . . .
+        delay(1000);                  // wait 1 second
+        distance = sonar.ping();      // then check the 'distance' variable again
+        if ( distance == 0 ) {        // if nothing is in range . . .
+          delay(1000);                // wait 1 second
+          distance = sonar.ping();    // then check the 'distance' variable again
+          if ( distance == 0 ) {      // finally, if nothing is in range . . .
+            digitalWrite(PUMP, LOW);  // turn the pump off
+          }
         }
       }
     }
