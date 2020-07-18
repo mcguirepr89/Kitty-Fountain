@@ -38,6 +38,7 @@ void loop() {
     distance = sonar.ping_cm();
     if ( distance > 1) {
       digitalWrite(PUMP, HIGH);       // turn the pump on
+      delay(10000);
     } else {                          // Else . . .
       delay(50);                      // wait 50ms
       distance = sonar.ping_cm();     // then check the 'distance' variable again
