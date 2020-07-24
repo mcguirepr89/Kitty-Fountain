@@ -27,12 +27,14 @@ void setup() {
 
 //Main Loop
 void loop() {
-  delay(50);                        /* Wait 50ms between pings. 29ms should
+  delay(500);                        /* Wait 50ms between pings. 29ms should
                                        be the shortest delay between pings*/
   distance = sonar.ping_cm();       // Set the ping value to 'distance' variable
   Serial.print(distance);           // Print 'distance' value in serial monitor
   Serial.println("cm");             // Print 'distance' units in serial monitor
-
+  if ( distance == 0 ) {
+    digitalWrite(PUMP,LOW);
+  }
   if ( distance > 1 ) {             // If anyting is in range . . .
     delay(50);
     distance = sonar.ping_cm();
