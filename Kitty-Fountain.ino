@@ -8,10 +8,10 @@
 
 //Definitions
 #define TRIGGER_PIN  12 // Sonar trigger to Arduino pin D12
-#define ECHO_PIN     11 // Sonar echo pin to Arduino pin D11
+#define ECHO_PIN     13 // Sonar echo pin to Arduino pin D13
 #define MAX_DISTANCE 35 /* Maximum distance to ping in centimeters 
                            (Maximum sensor distance is rated at 400-500cm)*/
-#define PUMP         13 // Relay signal pin to Arduino D13
+#define PUMP         2 // Relay signal pin to Arduino D2
 
 //Sonar setup
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPin setup
@@ -38,7 +38,7 @@ void loop() {
     distance = sonar.ping_cm();
     if ( distance > 1) {
       digitalWrite(PUMP, HIGH);       // turn the pump on
-      delay(10000);
+      delay(8000);
     } else {                          // Else . . .
       delay(50);                      // wait 50ms
       distance = sonar.ping_cm();     // then check the 'distance' variable again
